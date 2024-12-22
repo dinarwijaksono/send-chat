@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="sunset">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 
 <body>
 
-    <nav class="navbar bg-slate-700">
+    <nav class="navbar bg-slate-700 h-14 fixed z-50">
         <div class="flex-1">
             <a class="btn btn-ghost text-xl">Send Chat</a>
         </div>
@@ -28,97 +28,43 @@
         </div>
     </nav>
 
-    <div class="flex gap-1">
-        <aside class="basis-3/12 p-2">
+    <div class="flex justify-center pt-16">
+        <main class="md:basis-6/12 sm:basis-full bg-slate-500 p-2">
 
-            <section class="mb-2 p-2">
-                <input type="text" placeholder="Cari" class="input input-bordered w-full" />
+            <section class="mb-2">
+                <label class="input input-bordered flex items-center gap-2">
+                    <input type="text" class="grow rounded-xl input-sm" placeholder="Search" />
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                        class="h-4 w-4 opacity-70">
+                        <path fill-rule="evenodd"
+                            d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </label>
             </section>
 
-            <section class="flex p-2 bg-slate-600 rounded-md mb-2">
-                <div class="avatar placeholder">
-                    <div class="bg-neutral text-neutral-content w-14 h-14 rounded-full">
-                        <span>D</span>
-                    </div>
-                </div>
+            @for ($i = 0; $i < 10; $i++)
+                <a href="">
+                    <section class="rounded-xl p-4 bg-base-100 w-full mb-2 shadow-xl">
+                        <h2 class="font-bold text-lg text-slate-200">
+                            Andi Subagja <div class="badge badge-accent">{{ $i + 3 }}</div>
+                        </h2>
 
-                <div class="p-2 text-slate-100">
-                    <h1 class="font-bold">Andi</h1>
-                </div>
-            </section>
-
-            <section class="flex p-2 bg-yellow-600 rounded-md mb-2">
-                <div class="avatar placeholder">
-                    <div class="bg-neutral text-neutral-content w-14 h-14 rounded-full">
-                        <span>D</span>
-                    </div>
-                </div>
-
-                <div class="p-2 text-slate-100">
-                    <h1 class="font-bold">Andi</h1>
-                </div>
-            </section>
-
-        </aside>
-
-        <main class="basis-9/12 ">
-
-            <section class="flex p-2 border-b border-l border-slate-600">
-
-                <div class="avatar placeholder">
-                    <div class="bg-neutral text-neutral-content w-14 h-14 rounded-full">
-                        <span>D</span>
-                    </div>
-                </div>
-
-                <div class="p-2 text-slate-100">
-                    <h1 class="font-bold">Andi</h1>
-                </div>
-
-            </section>
-
-            <section class="py-2 px-8">
-                <section class="flex">
-                    <div class="bg-success text-gray-800 mb-2 p-2 rounded-xl w-10/12">
-                        <div>
-                            <h1 class="text-lg font-bold">Lorem, ipsum.</h1>
+                        <div class="text-right">
+                            <div class="text-sm text-slate-200">12 Maret 2024</div>
                         </div>
 
-                        <div class="pl-8">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                        </div>
+                        <p class="pl-8 text-sky-500">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo
+                            hic
+                            praesentium
+                            dolorem. Illum omnis nostrum perferendis tenetur quidem eaque est.</p>
 
-                        <div class="text-right text-xs">
-                            08:10, 12 Maret 2024
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </a>
+            @endfor
 
-                <section class="flex justify-end">
-                    <div class="bg-info text-gray-800 mb-2 p-2 rounded-xl w-10/12">
-                        <div>
-                            <h1 class="text-lg font-bold">Lorem, ipsum.</h1>
-                        </div>
-
-                        <div class="pl-8">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-                        </div>
-
-                        <div class="text-right text-xs">
-                            08:10, 12 Maret 2024
-                        </div>
-                    </div>
-                </section>
-            </section>
-
-            <section class="p-2 flex gap-2">
-                <div class="basis-11/12">
-                    <textarea class="textarea textarea-accent w-full" placeholder="Ketik disini...."></textarea>
-                </div>
-
-                <div>
-                    <button class="btn btn-sm btn-primary w-full">Kirim</button>
-                </div>
+            <section class="fixed bottom-5 right-5">
+                <a class="btn btn-primary shadow-lg">Buat</a>
             </section>
 
         </main>
