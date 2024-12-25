@@ -28,4 +28,31 @@ class ConversationRepository
 
         return $conversationId;
     }
+
+    public function getConversationId(int $senderId, int $receiverId): int | null
+    {
+        $conversationSender = UserConversation::select('conversation_id')
+            ->where('user_id', $senderId)
+            ->get();
+
+        $conversationArraySender = [];
+        foreach ($conversationSender as $c) {
+            $conversationArraySender[] = $c->conversation_id;
+        }
+
+        $conversationReceiver = UserConversation::select('conversation_id')
+            ->where('user_id', $receiverId)
+            ->get()
+            ->toArray();
+
+        $result = null;
+
+        for ($i = 0; $i < count($conversationReceiver); $i++) {
+            if (in_array($conversationReceiver[$i]['conversation_id'], $conversationArraySender)) {
+                $result = $conversationReceiver[$i]['conversation_id'];
+            }
+        }
+
+        return $result;
+    }
 }

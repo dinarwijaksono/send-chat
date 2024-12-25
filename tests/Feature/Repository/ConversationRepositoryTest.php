@@ -36,12 +36,52 @@ class ConversationRepositoryTest extends TestCase
 
         $this->assertDatabaseHas('user_conversations', [
             'conversation_id' => $response,
-            'id' => $this->users[0]->id,
+            'user_id' => $this->users[0]->id,
         ]);
 
         $this->assertDatabaseHas('user_conversations', [
             'conversation_id' => $response,
-            'id' => $this->users[1]->id,
+            'user_id' => $this->users[1]->id,
         ]);
+    }
+
+    public function test_get_conversation_id_success()
+    {
+        $this->conversationRepository->create($this->users[0]->id, $this->users[1]->id);
+
+        $response = $this->conversationRepository->getConversationId($this->users[0]->id, $this->users[1]->id);
+
+        $this->assertTrue(is_integer($response));
+
+        $this->assertDatabaseHas('user_conversations', [
+            'conversation_id' => $response,
+            'user_id' => $this->users[0]->id,
+        ]);
+
+        $this->assertDatabaseHas('user_conversations', [
+            'conversation_id' => $response,
+            'user_id' => $this->users[1]->id,
+        ]);
+
+        $response = $this->conversationRepository->getConversationId($this->users[1]->id, $this->users[0]->id);
+
+        $this->assertTrue(is_integer($response));
+
+        $this->assertDatabaseHas('user_conversations', [
+            'conversation_id' => $response,
+            'user_id' => $this->users[0]->id,
+        ]);
+
+        $this->assertDatabaseHas('user_conversations', [
+            'conversation_id' => $response,
+            'user_id' => $this->users[1]->id,
+        ]);
+    }
+
+    public function test_get_conversation_id_null()
+    {
+        $response = $this->conversationRepository->getConversationId($this->users[0]->id, $this->users[1]->id);
+
+        $this->assertTrue(is_null($response));
     }
 }
