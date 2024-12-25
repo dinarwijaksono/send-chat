@@ -1,0 +1,156 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Send Chat API",
+        "description": "API untuk aplikasi pengiriman pesan sederhana.",
+        "version": "1.0",
+        "contact": {
+            "name": "Dinar Wijaksono",
+            "email": "dinarwijaksono11@gmail.com"
+        }
+    },
+    "paths": {
+        "/send-message": {
+            "post": {
+                "summary": "Kirim pesan",
+                "description": "Mengirim pesan baru ke penerima tertentu.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "sender": {
+                                        "type": "string",
+                                        "description": "Nama pengirim"
+                                    },
+                                    "receiver": {
+                                        "type": "string",
+                                        "description": "Nama penerima"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Isi pesan"
+                                    }
+                                },
+                                "required": [
+                                    "sender",
+                                    "receiver",
+                                    "message"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Pesan berhasil dikirim",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "sender": {
+                                                    "type": "string"
+                                                },
+                                                "receiver": {
+                                                    "type": "string"
+                                                },
+                                                "message": {
+                                                    "type": "string"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "updated_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/get-messages": {
+            "get": {
+                "summary": "Ambil pesan",
+                "description": "Mengambil daftar pesan berdasarkan penerima tertentu.",
+                "parameters": [
+                    {
+                        "name": "receiver",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Nama penerima"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar pesan berhasil diambil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "sender": {
+                                                        "type": "string"
+                                                    },
+                                                    "receiver": {
+                                                        "type": "string"
+                                                    },
+                                                    "message": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
