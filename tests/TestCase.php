@@ -14,6 +14,9 @@ abstract class TestCase extends BaseTestCase
         config(['database.default' => 'mysql-test']);
 
         DB::delete('delete from users');
+        DB::delete('delete from conversations');
+        DB::delete('delete from user_conversations');
+        DB::delete('delete from messages');
         DB::delete('delete from sessions');
         DB::delete('delete from password_reset_tokens');
         DB::delete('delete from personal_access_tokens');
