@@ -45,6 +45,21 @@ class ConversationRepositoryTest extends TestCase
         ]);
     }
 
+    public function test_add_message()
+    {
+        $this->conversationRepository->create($this->users[0]->id, $this->users[1]->id);
+
+        $conversationId = $this->conversationRepository->getConversationId($this->users[0]->id, $this->users[1]->id);
+
+        $this->conversationRepository->addMessage($conversationId, $this->users[0]->id, "hi, apa kabar?");
+
+        $this->assertDatabaseHas('messages', [
+            'conversation_id' => $conversationId,
+            'user_id' => $this->users[0]->id,
+            'content' => 'hi, apa kabar?'
+        ]);
+    }
+
     public function test_get_conversation_id_success()
     {
         $this->conversationRepository->create($this->users[0]->id, $this->users[1]->id);

@@ -3,12 +3,14 @@
 namespace App\Repository;
 
 use App\Models\Conversation;
+use App\Models\Messages;
 use App\Models\UserConversation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ConversationRepository
 {
+    // create
     public function create(int $senderId, int $receiverId): int
     {
         $conversationId = DB::table('conversations')->insertGetId([
@@ -29,6 +31,17 @@ class ConversationRepository
         return $conversationId;
     }
 
+    public function addMessage(int $conversationId, int $senderId, string $message): void
+    {
+        Messages::create([
+            'conversation_id' => $conversationId,
+            'user_id' => $senderId,
+            'content' => $message
+        ]);
+    }
+
+
+    // read
     public function getConversationId(int $senderId, int $receiverId): int | null
     {
         $conversationSender = UserConversation::select('conversation_id')
