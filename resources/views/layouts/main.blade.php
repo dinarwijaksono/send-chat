@@ -20,7 +20,7 @@
         </div>
         <div class="flex-none">
             <ul class="menu menu-horizontal px-2">
-                <li class="mr-2"><a>Dinar Wijaksono</a></li>
+                <li class="mr-2"><a>{{ auth()->user()->name }}</a></li>
                 <form action="/logout" method="post">
                     <li>
                         @csrf

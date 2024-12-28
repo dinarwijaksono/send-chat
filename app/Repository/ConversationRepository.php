@@ -7,6 +7,7 @@ use App\Models\Messages;
 use App\Models\UserConversation;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ConversationRepository
 {
@@ -14,6 +15,7 @@ class ConversationRepository
     public function create(int $senderId, int $receiverId): int
     {
         $conversationId = DB::table('conversations')->insertGetId([
+            'code' => Str::random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
