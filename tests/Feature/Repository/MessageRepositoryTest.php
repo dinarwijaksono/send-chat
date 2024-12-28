@@ -30,7 +30,7 @@ class MessageRepositoryTest extends TestCase
         $this->user = User::select('*')->get();
     }
 
-    public function test_get_all_message(): void
+    public function test_get_all_message_success(): void
     {
         $this->seed(SendMessageSeeder::class);
         $this->seed(SendMessageSeeder::class);
